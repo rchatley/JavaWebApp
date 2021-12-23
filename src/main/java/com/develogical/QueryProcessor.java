@@ -30,6 +30,15 @@ public class QueryProcessor {
         return temp;
     }
 
+    public static boolean isPowerNumber(int n, double power) {
+        int a = (int) Math.round(Math.pow(n, (1/power)));
+        if(Math.pow(a,power) == n) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String process(String query) {
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -52,6 +61,15 @@ public class QueryProcessor {
         }
         if (query.toLowerCase().contains("theresa may")) {
             return "2016";
+        }
+        if (query.toLowerCase().contains("a square and a cube")) {
+            String[] temp = StringUtils.substringAfter(query, "cube: ").split(", ");
+            StringBuffer str = new StringBuffer();
+            for (String a: temp) {
+                if(isPowerNumber(Integer.parseInt(a), 2) && isPowerNumber(Integer.parseInt(a), 3))
+                    str.append(a);
+            }
+            return str.toString();
         }
         return "";
     }
