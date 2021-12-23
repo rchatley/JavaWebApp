@@ -31,6 +31,16 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void knowsMathAdd() throws Exception {
+        assertThat(queryProcessor.process("what is 5 plus 19"), containsString("24"));
+    }
+
+    @Test
+    public void knowsMathMultiply() throws Exception {
+        assertThat(queryProcessor.process("what is 8 multiplied by 10"), containsString("80"));
+    }
+
+    @Test
     public void isNotCaseSensitive() throws Exception {
         assertThat(queryProcessor.process("shakespeare"), containsString("playwright"));
     }

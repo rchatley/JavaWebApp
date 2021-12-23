@@ -1,5 +1,7 @@
 package com.develogical;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +18,16 @@ public class QueryProcessor {
         return String.valueOf(Collections.max(list));
     }
 
-    public String findSum(String str) {
-        String[] numbers = str.split(",");
-        return String.valueOf(Integer.parseInt(numbers[0].trim()) + Integer.parseInt(numbers[1].trim()));
+    public  String doMath(String str, int i, int j) {
+        String temp = "";
+        switch (str) {
+            case "plus": temp = String.valueOf(i + j);
+            break;
+            case "multiplied": temp =  String.valueOf(i * j);
+            break;
+            default : break;
+        }
+        return temp;
     }
 
     public String process(String query) {
@@ -34,9 +43,22 @@ public class QueryProcessor {
         if (query.toLowerCase().contains("which of the following numbers is the largest")) {
             return findLargest(query.split("largest:")[1]);
         }
-//        if (query.toLowerCase().contains("plus")) {
-//            return findSum(query.substring(query.indexOf("is"), query.indexOf("plus"))
-//        }
+        if (query.toLowerCase().contains("plus")) {
+            String[] temp = StringUtils.substringAfter(query, "what is ").split(" ");
+            for (String a: temp
+                 ) {
+                System.out.println(a);
+            }
+            return doMath(temp[1], Integer.parseInt(temp[0]), Integer.parseInt(temp[2]));
+        }
+        if (query.toLowerCase().contains("multiplied")) {
+            String[] temp = StringUtils.substringAfter(query, "what is ").split(" ");
+            for (String a: temp
+            ) {
+                System.out.println(a);
+            }
+            return doMath(temp[1], Integer.parseInt(temp[0]), Integer.parseInt(temp[3]));
+        }
         return "";
     }
 }
