@@ -21,8 +21,13 @@ public class QueryProcessorTest {
     }
 
     @Test
-    public void knowsAboutChristmas() throws Exception {
+    public void knowsAboutMyTeam() throws Exception {
         assertThat(queryProcessor.process("what is your name"), containsString("PriyaDiella"));
+    }
+
+    @Test
+    public void knowsAboutLargest() throws Exception {
+        assertThat(queryProcessor.process("which of the following numbers is the largest: 108, 90, 56, 203"), containsString("203"));
     }
 
     @Test
