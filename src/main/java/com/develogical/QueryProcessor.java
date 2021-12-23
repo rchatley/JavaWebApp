@@ -39,25 +39,19 @@ public class QueryProcessor {
         if (query.toLowerCase().contains("what is your name")) {
             return "PriyaDiella";
         }
-
         if (query.toLowerCase().contains("which of the following numbers is the largest")) {
             return findLargest(query.split("largest:")[1]);
         }
         if (query.toLowerCase().contains("plus")) {
             String[] temp = StringUtils.substringAfter(query, "what is ").split(" ");
-            for (String a: temp
-                 ) {
-                System.out.println(a);
-            }
             return doMath(temp[1], Integer.parseInt(temp[0]), Integer.parseInt(temp[2]));
         }
         if (query.toLowerCase().contains("multiplied")) {
             String[] temp = StringUtils.substringAfter(query, "what is ").split(" ");
-            for (String a: temp
-            ) {
-                System.out.println(a);
-            }
             return doMath(temp[1], Integer.parseInt(temp[0]), Integer.parseInt(temp[3]));
+        }
+        if (query.toLowerCase().contains("theresa may")) {
+            return "2016";
         }
         return "";
     }

@@ -41,6 +41,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void knowsYearInWhichTheresaBecamePM() throws Exception {
+        assertThat(queryProcessor.process("which year was Theresa May first elected as Prime Minister of Great Britain"), containsString("2016"));
+    }
+
+    @Test
     public void isNotCaseSensitive() throws Exception {
         assertThat(queryProcessor.process("shakespeare"), containsString("playwright"));
     }
